@@ -3,7 +3,7 @@ from pytesser import *
 
 def get_text(image_file_path):
   image = Image.open(image_file_path)
-  print image_to_string(image) 
+  print image_to_string(image)
 
 def main():
   if len(sys.argv) > 1:
