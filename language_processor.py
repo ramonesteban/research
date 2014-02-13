@@ -35,6 +35,14 @@ places = [
     'mexico',
     'usa'
 ]
+ingredients = [
+    'caramelo',
+    'maiz',
+    'agua',
+    'azucar',
+    'fenilalanina',
+    'aspartame'
+]
 
 def is_positive(word):
     for test in positiveWords:
@@ -65,6 +73,13 @@ def is_hashtag(word):
     if len(match) > 0:
         return True
 
+def is_ingredient(word):
+    for test in ingredients:
+        similarity = difflib.SequenceMatcher(None, test, word).ratio()
+        if similarity > 0.8:
+            print word + ' is a ingredient'
+            return True
+
 def main():
     fragments = [
         "Nueva Wal-Mart de Mexico",
@@ -79,7 +94,9 @@ def main():
         "costs $23 per person",
         "website http://theevent.com",
         "some comments at #coolevent",
-        "David david32@gmail.com"
+        "David david32@gmail.com",
+        "agua carbonatada, colorante natural",
+        "este producto contiene fenilalanina"
     ]
 
     for fragment in fragments:
@@ -103,7 +120,12 @@ def main():
 
             result = is_hashtag(word)
             if result == True:
-                print '<<' + fragment + '>> has a hashtag'
+                print '<<' + fragment + '>> contains a hashtag'
+                print '****************************'
+
+            result = is_ingredient(word)
+            if result == True:
+                print '<<' + fragment + '>> contains an ingredient'
                 print '****************************'
 
 if __name__ == '__main__':
