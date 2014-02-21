@@ -13,4 +13,11 @@ class ParserController < ApplicationController
     json_object = JSON.parse(json_string)
     render json: JSON.pretty_generate(json_object)
   end
+
+  def script
+    value = %x(python --version 2>&1)
+    path = Rails.root.join('public').to_s
+    response = %x(python #{path}/ocr.py)
+    render text: response
+  end
 end
