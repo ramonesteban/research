@@ -12,4 +12,7 @@
 # Ignore images
 *.jpg
 *.png
+*.gif
+
+# Ignore python compiled source
 *.pyc

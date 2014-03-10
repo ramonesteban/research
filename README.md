@@ -1,18 +1,29 @@
-Reconocimiento de texto y análisis información
-==============================================
+Reconocimiento de texto y análisis de información
+=================================================
 
 Plataforma y requisitos
---------------------------
+-----------------------
 
-Probado con Python 2.7.6 en Mac OS X 10.9.1. Se requieren dependencias
+Probado con Python 2.7.6 en Mac OS X 10.9.2. Se requieren dependencias
 que no pertenecen a la librería estándar de Python.
 
-Es necesario tener instalado **tesseract**:
+Es necesario tener instalados los siguientes módulos:
+* tesseract-ocr
+* opencv
+* numpy
+
+Para instalar **tesseract**:
 
     $ sudo port install tesseract
     $ sudo port install tesseract-eng
 
-También es necesario instalar **opencv**.
+Para instalar **opencv**:
+
+    $ sudo port install opencv +python27
+
+Para instalar **numpy**:
+
+    $ sudo port install py27-numpy
 
 
 Instalación y uso
