@@ -8,19 +8,19 @@ from recognition_accuracy import *
 
 def test_one(gray_image_array):
     result = threshold('binary_inverted', gray_image_array)
-    # show_image_in_window(result)
+    show_image_in_window(result)
     return result
 
 def test_two(gray_image_array):
     gray_image_array = cv2.GaussianBlur(gray_image_array, (5, 5), 0)
     result = threshold('otsu', gray_image_array)
-    # show_image_in_window(result)
+    show_image_in_window(result)
     return result
 
 def test_three(gray_image_array):
     gray_image_array = blur('median', gray_image_array)
     result = cv2.adaptiveThreshold(gray_image_array, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
-    # show_image_in_window(result)
+    show_image_in_window(result)
     return result
 
 def run_tests(image_file_path, show_text):
@@ -32,6 +32,7 @@ def run_tests(image_file_path, show_text):
     text_file_path = 'texts/' + text_file_path + '.txt'
 
     similarity_test(gray_image_array, text_file_path)
+    show_image_in_window(gray_image_array)
     if show_text == True: print get_text_from_image(result)
 
     result = test_one(gray_image_array)
