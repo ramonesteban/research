@@ -1,26 +1,34 @@
-import numpy as np
+import sys, os
 import cv2
+import numpy as np
 from pytesser import *
- 
-im = cv2.imread('text-sample-1.jpg')
 
-imgray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
-ret, thresh = cv2.threshold(imgray, 127, 255, cv2.THRESH_BINARY_INV)
-# ret,thresh = cv2.threshold(imgray,127,255,0)
+from general_functions import *
 
-# kernel = np.ones((3,3),np.uint8)
-# erosion = cv2.erode(thresh,kernel,iterations = 1)
+def improvement_test(image_file_path):
+    image = cv2.imread(image_file_path)
+    gray_image_array = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-# contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-# cnt = contours[0]
-# cv2.drawContours(im,contours,-1,(0,255,0),3)
+    # ret, thresh = cv2.threshold(gray_image_array, 127, 255, cv2.THRESH_BINARY_INV)
+    ret, thresh = cv2.threshold(gray_image_array, 127, 255, 0)
 
-new_width, new_height = im.shape[1]/4, im.shape[0]/4
-image_resized = cv2.resize(thresh, (new_width, new_height))
-cv2.imshow('houghlines',image_resized)
+    kernel = np.ones((5,5), np.uint8)
+    erosion = cv2.erode(thresh, kernel, iterations = 1)
 
-ok = raw_input()
-cv2.destroyAllWindows()
+    show_image_in_window(thresh)
 
-image_pil = Image.fromarray(thresh)
-print image_to_string(image_pil)
+    print get_text_from_image(thresh)
+
+
+def main():
+    if len(sys.argv) > 1:
+        image_file_path = sys.argv[1]
+        if os.path.isfile(image_file_path):
+            improvement_test(image_file_path)
+        else:
+            print 'Image file does not exist'
+    else:
+        print 'First parameter must be an image file name'
+
+if __name__ == '__main__':
+    main()
