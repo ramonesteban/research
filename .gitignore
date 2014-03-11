@@ -14,5 +14,8 @@
 *.png
 *.gif
 
+# Ignore texts
+/texts/*.txt
+
 # Ignore python compiled source
 *.pyc
