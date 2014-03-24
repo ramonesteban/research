@@ -4,6 +4,7 @@ Webservice::Application.routes.draw do
 
   match '/api/product/:id', to: 'parser#product',  via: 'get', as: 'api_product'
   match '/api/products',    to: 'parser#products', via: 'get', as: 'api_products'
+  match '/api/new',         to: 'parser#new',      via: 'get', as: 'api_new'
   match '/python',          to: 'parser#script',   via: 'get', as: 'script'
 
   # The priority is based upon order of creation: first created -> highest priority.

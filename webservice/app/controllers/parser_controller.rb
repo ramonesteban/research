@@ -20,4 +20,20 @@ class ParserController < ApplicationController
     response = %x(python #{path}/ocr.py)
     render text: response
   end
+
+  def new
+    @product = Product.new(product_params)
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to api_product_path(@product) }
+      else
+        format.html { render json: @product.errors }
+      end
+    end
+  end
+
+  private
+    def product_params
+      params.permit(:name, :company, :origin, :description, :rate)
+    end
 end
