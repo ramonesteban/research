@@ -8,7 +8,11 @@ class ParserController < ApplicationController
   end
 
   def products
-    @products = Product.all
+    if params[:search].nil?
+      @products = Product.all
+    else
+      @products = Product.search(params[:search])
+    end
     json_string = render_to_string(formats: :json)
     json_object = JSON.parse(json_string)
     render json: JSON.pretty_generate(json_object)
