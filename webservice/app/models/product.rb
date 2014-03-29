@@ -14,4 +14,12 @@ class Product < ActiveRecord::Base
 
   validates :rate,
     presence: true
+
+  def self.search(search)
+    if search
+      where('description LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
 end
