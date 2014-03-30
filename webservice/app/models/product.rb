@@ -22,4 +22,16 @@ class Product < ActiveRecord::Base
       all
     end
   end
+
+  def self.filter(name, company, rate)
+    if name
+      where('name LIKE ?', "%#{search}%")
+    elsif company
+      where('company LIKE ?', "%#{search}%")
+    elsif rate
+      where('rate == ?', rate)
+    else
+      all
+    end
+  end
 end

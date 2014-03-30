@@ -18,6 +18,10 @@ class ParserController < ApplicationController
     render json: JSON.pretty_generate(json_object)
   end
 
+  def filter
+    @products = Product.filter(params[:name], params[:company], params[:rate])
+  end
+
   def script
     value = %x(python --version 2>&1)
     path = Rails.root.join('public').to_s
