@@ -20,6 +20,9 @@ class ParserController < ApplicationController
 
   def filter
     @products = Product.filter(params[:name], params[:company], params[:rate])
+    json_string = render_to_string(formats: :json)
+    json_object = JSON.parse(json_string)
+    render json: JSON.pretty_generate(json_object)
   end
 
   def script

@@ -7,6 +7,8 @@ Webservice::Application.routes.draw do
   match '/api/new',         to: 'parser#new',      via: 'get', as: 'api_new'
   match '/python',          to: 'parser#script',   via: 'get', as: 'script'
 
+  match '/api/products/filter', to: 'parser#filter', via: 'get', as: 'api_filter'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
