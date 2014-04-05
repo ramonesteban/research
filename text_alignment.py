@@ -25,13 +25,13 @@ y_max = 0
 for x1, y1, x2, y2 in lines:
     cv2.line(img, (x1,y1), (x2,y2), (0,255,0), 1)
     if x1 < x_min:
-      x_min = x1
+        x_min = x1
     if x2 > x_max:
-      x_max = x2
+        x_max = x2
     if y1 < y_min:
-      y_min = y1
+        y_min = y1
     if y2 > y_max:
-      y_max = y2
+        y_max = y2
 
 print x_min, x_max, y_min, y_max
 
@@ -51,12 +51,3 @@ print 'Showing binary image'
 show_image_in_window(img)
 
 print get_text_from_image(img)
-
-# img = cv2.imread('text-sample-2.jpg')
-# gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-# edges = cv2.Canny(gray,50,150,apertureSize = 3)
-# minLineLength = 200
-# maxLineGap = 10
-# lines = cv2.HoughLinesP(edges,1,np.pi/180,10,minLineLength,maxLineGap)
-# for x1,y1,x2,y2 in lines[0]:
-#     cv2.line(img,(x1,y1),(x2,y2),(0,255,0),2)
