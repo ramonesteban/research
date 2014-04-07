@@ -33,7 +33,7 @@ def run_tests(image_file_path, show_text):
 
     similarity_test(gray_image_array, text_file_path)
     show_image_in_window(gray_image_array)
-    if show_text == True: print get_text_from_image(result)
+    if show_text == True: print get_text_from_image(gray_image_array)
 
     result = test_one(gray_image_array)
     similarity_test(result, text_file_path)

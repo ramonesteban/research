@@ -7,12 +7,16 @@ from general_functions import *
 def similarity_test(image_array, text_file_path):
     image_text = get_text_from_image(image_array)
 
-    file_text = open(text_file_path, 'r')
-    plain_text = file_text.read()
+    if os.path.isfile(text_file_path):
+        file_text = open(text_file_path, 'r')
+        plain_text = file_text.read()
 
-    similarity = difflib.SequenceMatcher(None, plain_text, image_text).ratio()
-    print '### Similarity Ratio ###'
-    print similarity
+        similarity = difflib.SequenceMatcher(None, plain_text, image_text).ratio()
+        print '### Similarity Ratio ###'
+        print similarity
+    else:
+        print '### Similarity Ratio ###'
+        print 'Text file not found to check similarity'
 
 def accuaracy_test(image_file_path):
     image = cv2.imread(image_file_path)
