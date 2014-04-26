@@ -1,17 +1,16 @@
 == README
 
-=== Requisitos
-* Versión de Ruby <tt>2.0</tt>
+=== Requirements
+* Ruby version <tt>2.0</tt>
 
-* Versión de Rails <tt>4.0</tt>
+* Rails version <tt>4.0</tt>
 
 
-=== Configuración
-
-* Para la creación de la base de datos, ejecuta:
+=== Configurations
+* To create the database run:
 
     $ rake db:migrate
 
-* Para iniciar el servidor en modo de desarrollo, ejecuta:
+* To start the server in development mode, run:
 
     $ rails s
