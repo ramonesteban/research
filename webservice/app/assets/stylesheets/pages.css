@@ -1,4 +1,43 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+/* Modify Bootstrap Defaults */
+.jumbotron {
+  padding: 20px;
+}
+
+.jumbotron h2 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.footer {
+  padding-top: 15px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+
+/* Style for file inputs */
+.form-file {
+  position: relative;
+}
+
+.form-file-input {
+  background-color: transparent;
+  color: transparent;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  filter: alpha(opacity=0);
+}
+
+.form-file-span {
+  display: inline-block;
+  font-size: 18px;
+}

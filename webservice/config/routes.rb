@@ -1,8 +1,6 @@
 Webservice::Application.routes.draw do
-  root 'products#index'
+  root 'pages#index'
   resources :products
-
-  get 'pages/index'
 
   match '/api/product/:id', to: 'parser#product',  via: 'get', as: 'api_product'
   match '/api/products',    to: 'parser#products', via: 'get', as: 'api_products'
