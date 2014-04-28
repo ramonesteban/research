@@ -9,6 +9,8 @@ Webservice::Application.routes.draw do
 
   match '/api/products/filter', to: 'parser#filter', via: 'get', as: 'api_filter'
 
+  match '/upload_picture',  to: 'pages#upload_picture', via: 'post', as: 'upload_picture'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

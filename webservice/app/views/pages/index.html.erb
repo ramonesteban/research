@@ -5,11 +5,25 @@
     <h2>Verify product</h2>
     <p>Take an image from your mobile of the label of a product and we will tell you if this is considered ecological or not.</p>
 
-    <%= form_tag(root_path, multipart: true, class: 'form-horizontal') do %>
+    <% if !notice.nil? %>
+      <div class="alert alert-success">
+        <%= notice %>
+        <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+      </div>
+    <% end %>
+
+    <% if !alert.nil? %>
+      <div class="alert alert-danger">
+        <%= alert %>
+        <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+      </div>
+    <% end %>
+
+    <%= form_tag(upload_picture_path, multipart: true, class: 'form-horizontal') do %>
       <div class="form-group">
         <div class="col-sm-12">
           <a class="btn btn-default" href="javascript:;">
-            Choose picture ...
+            Take a picture ...
             <%= file_field_tag :picture, class: 'form-file-input', onchange: '$("#upload-file-info").html($(this).val());', accept: 'image/*', capture: 'camera' %>
           </a>
           <div class="form-file-span">
