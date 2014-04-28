@@ -1,9 +1,13 @@
-import os
+import sys, os
 import Image
 from pytesser import *
 
-if os.path.isfile('public/image.jpg'):
-  image = Image.open('public/image.jpg')
-  print image_to_string(image)
+if len(sys.argv) > 1:
+    image_file_path = sys.argv[1]
+    if os.path.isfile(image_file_path):
+        image = Image.open(image_file_path)
+        print image_to_string(image)
+    else:
+        print 'File not found.'
 else:
-  print 'File not found.'
+    print 'Internal parameter is missing.'

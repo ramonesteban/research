@@ -9,7 +9,8 @@ class PagesController < ApplicationController
       if !image.nil?
         ext = image.original_filename.split('.')[-1]
         if ext == 'jpg' || ext == 'png'
-          new_filename = "tmp.#{ext}"
+          name = Time.now.to_i
+          new_filename = "#{name}.#{ext}"
           File.open(Rails.root.join('public', 'pictures', new_filename), 'wb') do |file|
             file.write(image.read)
           end
