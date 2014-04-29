@@ -3,69 +3,69 @@ import string
 import difflib
 import re
 
-brands = [
-    'gamesa',
-    'minsa',
-    '3 estrellas',
-    'bimbo',
-    'arroz morelos',
-    'frijol negro veracruz',
-    'valle',
-    'fud',
-    '1-2-3',
-    'gerber',
-    'dolores',
-    'nescafe',
-    'knor suiza',
-    'la costena',
-    'ibarra',
-    'choco choco',
-    'dgari',
-    'bachoco',
-    'nestle',
-    'nido',
-    'clavel',
-    'lala',
-    'chipilo',
-    'mc cormick',
-    'la moderna',
-    'la fina',
-    'la torre',
-    'cloralex',
-    'obao',
-    'salvo',
-    'roma',
-    'h-24',
-    'zote',
-    'palmolive',
-    'presto barba',
-    'suavelastic',
-    'petalo',
-    'colgate',
-    'duracell',
-    'petalo',
-    'vanart',
-    'pepsi-cola',
-    'pepsico',
-    'wal-mart'
-]
+brands = {
+    'gamesa': 0.9,
+    'minsa': 0.6,
+    '3 estrellas': 0.85,
+    'bimbo': 0.9,
+    'arroz morelos': 0.8,
+    'frijol negro veracruz': 0.8,
+    'valle': 0.85,
+    'fud': 0.85,
+    '1-2-3': 0.9,
+    'gerber': 0.9,
+    'dolores': 0.9,
+    'nescafe': 0.9,
+    'knor suiza': 0.8,
+    'la costena': 0.8,
+    'ibarra': 0.7,
+    'choco choco': 0.9,
+    'dgari': 0.7,
+    'bachoco': 0.8,
+    'nestle': 0.9,
+    'nido': 0.9,
+    'clavel': 0.7,
+    'lala': 0.9,
+    'chipilo': 0.7,
+    'mc cormick': 0.8,
+    'la moderna': 0.7,
+    'la fina': 0.8,
+    'la torre': 0.7,
+    'cloralex': 0.9,
+    'obao': 0.85,
+    'salvo': 0.85,
+    'roma': 0.7,
+    'h-24': 0.6,
+    'zote': 0.7,
+    'palmolive': 0.7,
+    'presto barba': 0.6,
+    'suavelastic': 0.7,
+    'petalo': 0.7,
+    'colgate': 0.8,
+    'duracell': 0.6,
+    'petalo': 0.7,
+    'vanart': 0.8,
+    'pepsi-cola': 0.8,
+    'pepsico': 0.8,
+    'wal-mart': 0.7
+}
 
-places = [
-    'mexico',
-    'usa'
-]
+places = {
+    'mexico': 0.9,
+    'usa': 0.6
+}
 
 def is_brand(word):
-    for test in brands:
-        similarity = difflib.SequenceMatcher(None, test, word).ratio()
+    for brand, value in brands.iteritems():
+        similarity = difflib.SequenceMatcher(None, brand, word).ratio()
         if similarity > 0.8:
-            return True
+            return value
 
 def is_place(word):
-    for test in places:
-        similarity = difflib.SequenceMatcher(None, test, word).ratio()
+    for place, value in places.iteritems():
+        similarity = difflib.SequenceMatcher(None, place, word).ratio()
         if similarity > 0.8:
-            return True
+            return value
 
 def classifier(text_file_path):
     file_text = open(text_file_path, 'r')
@@ -74,26 +74,26 @@ def classifier(text_file_path):
     words = plain_text.lower().split()
     print plain_text.lower().split()
 
-    product_rate = 0
+    product_rate = 0.0
     brand = False
     place = False
 
     for word in words:
-        result = is_brand(word)
-        if result:
+        value = is_brand(word)
+        if value != None:
             print word + ' is brand word'
             if not brand:
                 brand = True
-                product_rate += 1
+                product_rate += value
 
-        result = is_place(word)
-        if result:
+        value = is_place(word)
+        if value != None:
             print word + ' is a known place'
             if not place:
                 place = True
-                product_rate += 1
+                product_rate += value
 
-    print 'Product rate: %d' % product_rate
+    print 'Product rate: %0.2f' % (product_rate/2.0)
 
 def main():
     if len(sys.argv) > 1:
