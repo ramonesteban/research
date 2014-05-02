@@ -9,13 +9,16 @@
 /log/*.log
 /tmp
 
-# Ignore images
+# Ignore bash helpers.
+/*.sh
+
+# Ignore images.
 *.jpg
 *.png
 *.gif
 
-# Ignore texts
+# Ignore texts.
 /texts/*.txt
 
-# Ignore python compiled source
+# Ignore python compiled source.
 *.pyc
