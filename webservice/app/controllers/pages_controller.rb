@@ -23,4 +23,17 @@ class PagesController < ApplicationController
       end
     end
   end
+
+  def test
+    require 'base64'
+    data = params[:image]
+
+    respond_to do |format|
+      if !data.nil?
+        format.json { render json: {status: 'ok', message: 'We get an image.'} }
+      else
+        format.json { render json: {status: 'error', message: 'Something went wrong.'} }
+      end
+    end
+  end
 end
