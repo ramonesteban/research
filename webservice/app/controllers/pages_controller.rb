@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  require 'base64'
+
   def index
   end
 
@@ -24,12 +26,20 @@ class PagesController < ApplicationController
     end
   end
 
-  def test
-    require 'base64'
-    data = params[:image]
+  def upload_image
+    image = params[:image]
 
     respond_to do |format|
-      if !data.nil?
+      if !image.nil?
+        image_data = Base64.decode64(image['data:image/png;base64,'.length .. -1])
+
+        name = Time.now.to_i
+        new_filename = "#{name}.jpg"
+
+        File.open(Rails.root.join('public', 'pictures', new_filename), 'wb') do |file|
+          file.write(image_data)
+        end
+
         format.json { render json: {status: 'ok', message: 'We get an image.'} }
       else
         format.json { render json: {status: 'error', message: 'Something went wrong.'} }
