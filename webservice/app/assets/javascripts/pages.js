@@ -1,3 +1,25 @@
+$(function(){
+  $.ajaxSetup({
+    beforeSend: function(xhr) {
+      var token = $('meta[name="csrf-token"]').attr('content');
+      if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+    }
+  });
+});
+
+function remoteAction(controller, code) {
+  $.ajax({
+    url: controller,
+    type: 'POST',
+    dataType: 'json',
+    data: {image: code},
+    success: function(data, textStatus, xhr) {
+      console.log(data.status);
+      console.log(data.message);
+    }
+  });
+}
+
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -60,13 +82,6 @@ function resizeAndUpload(file) {
       var dataURL = canvas.toDataURL("image/jpeg");
 
       remoteAction('/upload_image', dataURL);
-      var token = $('meta[name="csrf-token"]').attr('content');
-      xhr = new XMLHttpRequest();
-      xhr.open('POST', '/upload_image', true);
-      if (token) xhr.setRequestHeader('X-CSRF-Token', token);
-      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      var data = 'image=' + dataURL;
-      xhr.send(dataURL);
     }
   }
   reader.readAsDataURL(file);
