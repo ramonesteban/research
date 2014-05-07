@@ -34,15 +34,17 @@ class PagesController < ApplicationController
         image_data = Base64.decode64(image['data:image/png;base64,'.length .. -1])
 
         name = Time.now.to_i
-        new_filename = "#{name}.jpg"
+        filename = "#{name}.jpg"
 
-        File.open(Rails.root.join('public', 'pictures', new_filename), 'wb') do |file|
+        File.open(Rails.root.join('public', 'pictures', filename), 'wb') do |file|
           file.write(image_data)
         end
 
-        format.json { render json: {status: 'ok', message: 'We get an image.'} }
+        response = get_image_text(filename)
+
+        format.json { render json: {status: 'ok', msg: 'Server got and processed image.', txt: response} }
       else
-        format.json { render json: {status: 'error', message: 'Something went wrong.'} }
+        format.json { render json: {status: 'error', msg: 'Something went wrong.'} }
       end
     end
   end

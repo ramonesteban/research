@@ -14,8 +14,13 @@ function remoteAction(controller, code) {
     dataType: 'json',
     data: {image: code},
     success: function(data, textStatus, xhr) {
-      console.log(data.status);
-      console.log(data.message);
+      if (data.status == 'ok') {
+        console.log(data.msg);
+        console.log(data.txt);
+      }
+      if (data.status == 'error') {
+        console.log(data.msg);
+      }
     }
   });
 }
