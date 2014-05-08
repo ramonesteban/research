@@ -13,9 +13,9 @@
 /*.sh
 
 # Ignore images.
-*.jpg
-*.png
-*.gif
+images/*.jpg
+images/*.png
+images/*.gif
 
 # Ignore texts.
 /texts/*.txt
