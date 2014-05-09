@@ -7,6 +7,10 @@ $(function(){
   });
 });
 
+$(document).ajaxStart(function() {
+  $('#text-container').show();
+});
+
 function remoteAction(controller, code) {
   $.ajax({
     url: controller,
@@ -17,6 +21,8 @@ function remoteAction(controller, code) {
       if (data.status == 'ok') {
         console.log(data.msg);
         console.log(data.txt);
+        $('#preview-container').hide();
+        $('#text-container').text(data.txt);
       }
       if (data.status == 'error') {
         console.log(data.msg);
@@ -45,6 +51,7 @@ $(document).ready(function() {
 
   if (window.File && window.FileReader && window.FileList && window.Blob) {
       document.getElementById('picture').onchange = function() {
+        $('#text-container').text('Retrieving text...').show();
         var files = document.getElementById('picture').files;
         for(var i = 0; i < files.length; i++) {
           resizeAndUpload(files[i]);
