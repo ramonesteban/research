@@ -3,26 +3,26 @@
 
   <div class="jumbotron">
     <h2>Verify product</h2>
-    <p>Take an image from your mobile of the label of a product and we will tell you if this is considered ecological or not.</p>
+    <p class="text-justify">Take an image from your mobile of the label of a product to check if this is considered ecological or not.</p>
 
     <% if !notice.nil? %>
       <div class="alert alert-success">
-        <%= notice %>
         <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+        <%= notice %>
       </div>
     <% end %>
 
     <% if !alert.nil? %>
       <div class="alert alert-danger">
-        <%= alert %>
         <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+        <%= alert %>
       </div>
     <% end %>
 
     <%= form_tag(upload_picture_path, multipart: true, class: 'form-horizontal') do %>
       <div class="form-group">
-        <div class="col-sm-12">
-          <a class="btn btn-default" href="javascript:;">
+        <div class="col-sm-12 text-center">
+          <a class="btn btn-success" href="javascript:;">
             Take a picture ...
             <%= file_field_tag :picture, class: 'form-file-input', onchange: '$("#upload-file-info").html($(this).val());', accept: 'image/*', capture: 'camera' %>
           </a>
