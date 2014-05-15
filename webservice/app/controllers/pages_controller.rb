@@ -42,7 +42,12 @@ class PagesController < ApplicationController
 
         response = get_image_text(filename)
 
-        format.json { render json: {status: 'ok', msg: 'Server got and processed image.', txt: response} }
+        format.json { render json: {
+          status: 'ok',
+          msg: 'Server got and processed image.',
+          txt: response,
+          res: Random.rand(1..10)
+        } }
       else
         format.json { render json: {status: 'error', msg: 'Something went wrong.'} }
       end
