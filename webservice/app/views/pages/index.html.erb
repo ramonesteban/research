@@ -21,7 +21,7 @@
 
     <%= form_tag(upload_picture_path, multipart: true, class: 'form-horizontal') do %>
       <div class="form-group">
-        <div class="col-sm-12 text-center">
+        <div class="col-sm-12">
           <a class="btn btn-success" href="javascript:;">
             Take a picture ...
             <%= file_field_tag :picture, class: 'form-file-input', onchange: '$("#upload-file-info").html($(this).val());', accept: 'image/*', capture: 'camera' %>

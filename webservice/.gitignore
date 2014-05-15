@@ -14,3 +14,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore uploaded images
+/public/pictures/*.jpg
+/public/pictures/*.png
+/public/pictures/*.gif
