@@ -27,8 +27,8 @@ class ParserController < ApplicationController
 
   def script
     value = %x(python --version 2>&1)
-    path = Rails.root.join('public').to_s
-    response = %x(python #{path}/ocr.py public/image.jpg)
+    path = Rails.root.join('python').to_s
+    response = %x(python #{path}/ocr.py public/pictures/test.jpg)
     render text: response
   end
 
