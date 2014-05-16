@@ -23,6 +23,10 @@ function remoteAction(controller, code) {
         console.log(data.txt);
         $('#preview-container').hide();
         $('#text-container').text(data.txt);
+        if (data.res !== undefined) {
+          res = 'Evaluation pass with <strong>'+data.res+'</strong>';
+          $('#result-container').html(res).show();
+        }
       }
       if (data.status == 'error') {
         console.log(data.msg);
@@ -51,6 +55,7 @@ $(document).ready(function() {
 
   if (window.File && window.FileReader && window.FileList && window.Blob) {
       document.getElementById('picture').onchange = function() {
+        $('#result-container').html('').hide();
         $('#text-container').text('Retrieving text...').show();
         var files = document.getElementById('picture').files;
         for(var i = 0; i < files.length; i++) {
@@ -69,8 +74,8 @@ function resizeAndUpload(file) {
     var tmp_image = new Image();
     tmp_image.src = reader.result;
     tmp_image.onload = function() {
-      var MAX_WIDTH = 800;
-      var MAX_HEIGHT = 800;
+      var MAX_WIDTH = 1200;
+      var MAX_HEIGHT = 1200;
       var tmpW = tmp_image.width;
       var tmpH = tmp_image.height;
 
