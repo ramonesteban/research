@@ -72,7 +72,6 @@ def classifier(text_file_path):
     plain_text = file_text.read()
     plain_text = filter(lambda x: x in string.printable, plain_text)
     words = plain_text.lower().split()
-    print plain_text.lower().split()
 
     product_rate = 0.0
     brand = False
@@ -81,19 +80,17 @@ def classifier(text_file_path):
     for word in words:
         value = is_brand(word)
         if value != None:
-            print word + ' is brand word'
             if not brand:
                 brand = True
                 product_rate += value
 
         value = is_place(word)
         if value != None:
-            print word + ' is a known place'
             if not place:
                 place = True
                 product_rate += value
 
-    print 'Product rate: %0.2f' % (product_rate/2.0)
+    print '%0.2f' % (product_rate/2.0)
 
 def main():
     if len(sys.argv) > 1:
