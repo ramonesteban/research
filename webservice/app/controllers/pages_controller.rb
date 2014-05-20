@@ -43,6 +43,7 @@ class PagesController < ApplicationController
 
         response = get_image_text(filename)
         rate = get_rate(response)
+        rate = (rate.to_f * 10).round
 
         format.json { render json: {
           status: 'ok',

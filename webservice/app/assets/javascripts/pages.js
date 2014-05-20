@@ -11,6 +11,18 @@ $(document).ajaxStart(function() {
   $('#text-container').show();
 });
 
+function createAlert(rate) {
+  info = 'Evaluation pass with <strong>'+rate+'</strong>';
+  if (rate >= 8) {
+    alert = '<div class="alert alert-success">'+info+'</div>';
+  } else if (rate < 8 && rate > 3) {
+    alert = '<div class="alert alert-warning">'+info+'</div>';
+  } else {
+    alert = '<div class="alert alert-danger">'+info+'</div>';
+  }
+  $('#result-container').html(alert).show();
+}
+
 function remoteAction(controller, code) {
   $.ajax({
     url: controller,
@@ -24,8 +36,7 @@ function remoteAction(controller, code) {
         $('#preview-container').hide();
         $('#text-container').text(data.txt);
         if (data.res !== undefined) {
-          res = 'Evaluation pass with <strong>'+data.res+'</strong>';
-          $('#result-container').html(res).show();
+          createAlert(data.res);
         }
       }
       if (data.status == 'error') {
