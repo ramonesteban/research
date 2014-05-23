@@ -7,10 +7,19 @@
 
 
 === Configurations
+* Install all gems dependencies:
+
+    $ bundle install
+
 * To create the database run:
 
-    $ rake db:migrate
+    $ bundle exec rake db:migrate
 
 * To start the server in development mode, run:
 
-    $ rails s
+    $ bundle exec rails s
+
+=== Open the application
+Once you have started the server, open your web browser at:
+
+    http://localhost:3000/
