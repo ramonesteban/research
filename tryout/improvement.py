@@ -4,7 +4,6 @@ import numpy as np
 
 # Hack to use modules in parent folder
 sys.path.append('..')
-from pytesser import *
 from general_functions import *
 
 def improvement(image_file_path):

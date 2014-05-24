@@ -4,7 +4,7 @@ from pytesser import *
 
 from image_filters import *
 from general_functions import *
-from recognition_accuracy import *
+from test_accuracy import *
 
 def test_one(gray_image_array):
     result = threshold('binary_inverted', gray_image_array)

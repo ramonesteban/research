@@ -27,10 +27,13 @@ def accuaracy_test(image_file_path):
     erosion = cv2.erode(thresh, kernel, iterations = 1)
 
     show_image_in_window(thresh)
-
     image_text = get_text_from_image(thresh)
 
-    file_text = open('text.txt', 'r')
+    text_file_path = image_file_path.split('.')[0]
+    text_file_path = text_file_path.split('/')[1]
+    text_file_path = 'texts/' + text_file_path + '.txt'
+
+    file_text = open(text_file_path, 'r')
     plain_text = file_text.read()
 
     similarity = difflib.SequenceMatcher(None, plain_text, image_text).ratio()

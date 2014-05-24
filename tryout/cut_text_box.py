@@ -1,15 +1,18 @@
 import sys, os
 import cv2
 import numpy as np
+
+# Hack to use modules in parent folder
+sys.path.append('..')
 from general_functions import *
 
-def text_alignment(image_file_path):
+def cut_text_box(image_file_path):
     image = cv2.imread(image_file_path)
 
     image_split = cv2.split(image)
-    flag,b = cv2.threshold(image_split[2], 0, 255, cv2.THRESH_OTSU) 
+    flag, b = cv2.threshold(image_split[2], 0, 255, cv2.THRESH_OTSU) 
 
-    element = cv2.getStructuringElement(cv2.MORPH_CROSS, (1,1))
+    element = cv2.getStructuringElement(cv2.MORPH_CROSS, (1, 1))
     cv2.erode(b, element)
 
     edges = cv2.Canny(b, 150, 200, 3, 5)
@@ -58,7 +61,7 @@ def main():
     if len(sys.argv) > 1:
         image_file_path = sys.argv[1]
         if os.path.isfile(image_file_path):
-            text_alignment(image_file_path)
+            cut_text_box(image_file_path)
         else:
             print 'Image file does not exist'
     else:

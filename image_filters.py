@@ -1,6 +1,5 @@
 import cv2, Image
 import numpy as np
-from pytesser import *
 
 def threshold(method, gray_image_array):
     if method == 'binary_inverted':
