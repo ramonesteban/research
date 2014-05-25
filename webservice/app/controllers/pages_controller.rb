@@ -31,6 +31,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if !image.nil?
+        start_time = Time.now.to_f
         image_data = Base64.decode64(image['data:image/png;base64,'.length .. -1])
 
         name = Time.now.to_i
@@ -44,6 +45,17 @@ class PagesController < ApplicationController
         response = get_image_text(filename)
         rate = get_rate(response)
         rate = (rate.to_f * 10).round
+        end_time = Time.now.to_f
+
+        file_size = File.size(Rails.root.join('public', 'pictures', filename)) / 2**10
+        File.delete(Rails.root.join('public', 'pictures', filename))
+
+        logline = (end_time - start_time).round(3).to_s + ',' + file_size.to_s + ",\n"
+
+        File.open(Rails.root.join('python', 'output', 'log.txt'), 'a+') do |file|
+          file.write(logline)
+          file.close
+        end
 
         format.json { render json: {
           status: 'ok',

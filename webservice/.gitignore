@@ -19,3 +19,6 @@
 /public/pictures/*.jpg
 /public/pictures/*.png
 /public/pictures/*.gif
+
+# Ignore output files
+/python/output/*.txt
