@@ -31,18 +31,24 @@ def run_tests(image_file_path, show_text):
     text_file_path = text_file_path.split('/')[1]
     text_file_path = 'texts/' + text_file_path + '.txt'
 
-    similarity_test(gray_image_array, text_file_path)
+    similarity_file = open('texts/similarity.txt', 'a+')
+
+    ratio0 = similarity_test(gray_image_array, text_file_path)
     show_image_in_window(gray_image_array)
     if show_text == True: print get_text_from_image(gray_image_array)
 
     result = test_one(gray_image_array)
-    similarity_test(result, text_file_path)
+    ratio1 = similarity_test(result, text_file_path)
     if show_text == True: print get_text_from_image(result)
 
     result = test_two(gray_image_array)
-    similarity_test(result, text_file_path)
+    ratio2 = similarity_test(result, text_file_path)
     if show_text == True: print get_text_from_image(result)
 
     result = test_three(gray_image_array)
-    similarity_test(result, text_file_path)
+    ratio3 = similarity_test(result, text_file_path)
     if show_text == True: print get_text_from_image(result)
+
+    file_line = str(ratio0) + ',' + str(ratio1) + ',' + str(ratio2) + ',' + str(ratio3) + ",\n"
+    similarity_file.write(file_line)
+    similarity_file.close()

@@ -14,9 +14,11 @@ def similarity_test(image_array, text_file_path):
         similarity = difflib.SequenceMatcher(None, plain_text, image_text).ratio()
         print '### Similarity Ratio ###'
         print similarity
+        return similarity
     else:
         print '### Similarity Ratio ###'
         print 'Text file not found to check similarity'
+        return 0
 
 def accuaracy_test(image_file_path):
     image = cv2.imread(image_file_path)
